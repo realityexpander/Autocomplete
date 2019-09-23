@@ -24,7 +24,7 @@ class Main {
       // Does this node represent the last character in a word?
       boolean isWord;
           
-      private Node(String prefix) {
+      public Node(String prefix) {
           this.prefix = prefix;
           this.children = new HashMap<Character, Node>();
       }
