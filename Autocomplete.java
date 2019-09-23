@@ -49,19 +49,21 @@ class Main {
       // Iterate through each character in the string. If the character is not
       // already in the trie then add it
       for (int i = 0; i < s.length(); i++) {
-          System.out.println("@ char '" + s.charAt(i) + 
-                             "' has keySet=" + curr.children.keySet());
+          System.out.print("Is char '" + s.charAt(i) + 
+                             "' in keySet=" + curr.children.keySet() + "?");
           if (!curr.children.containsKey(s.charAt(i))) {
             curr.children.put(s.charAt(i), 
                               new Node(s.substring(0,i+1)));
-            System.out.println("Put \""+ s.substring(0,i+1) +"\" into key ["+ 
+            System.out.println(" No, so Put \""+ s.substring(0,i+1) +"\" into key ["+ 
                               s.charAt(i) + "]");
+          } else {
+            System.out.println(" Yes, continue to next character.");
           }
 
           curr = curr.children.get(s.charAt(i));
           if (i == s.length() - 1) { // End of the word?
             curr.isWord = true;
-            System.out.println("    \""+s.substring(0,i+1)+ "\", isWord=true");
+            System.out.println("Finally, set \""+s.substring(0,i+1)+ "\" isWord=true");
             System.out.println();
           } 
       }
@@ -76,7 +78,7 @@ class Main {
       // Iterate to the end of the prefix
       Node curr = trie;
       for (char c : pre.toCharArray()) {
-          System.out.println("@ char '"+ c +"'searching in keySet=" +
+          System.out.println("@ char '"+ c +"', searching in keySet=" +
                              curr.children.keySet() );
           if (curr.children.containsKey(c)) {
               curr = curr.children.get(c);
